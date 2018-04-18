@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'gritter'
 
 group :development, :test do
   gem 'sqlite3'
