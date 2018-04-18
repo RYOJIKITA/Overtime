@@ -17,6 +17,8 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'gritter'
+gem "administrate"
+gem 'bourbon'
 
 group :development, :test do
   gem 'sqlite3'
