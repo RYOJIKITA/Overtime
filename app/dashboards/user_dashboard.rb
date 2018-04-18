@@ -20,14 +20,12 @@ class UserDashboard < Administrate::BaseDashboard
 
   COLLECTION_ATTRIBUTES = [
     :posts,
-    :id,
     :email,
     :type
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
     :posts,
-    :id,
     :email,
     :sign_in_count,
     :current_sign_in_at,
