@@ -18,4 +18,12 @@ FactoryGirl.define do
   	password 'hogehoge'
   	password_confirmation 'hogehoge'  	
   end
+
+  factory :non_authorized_user, class: "User" do
+    first_name "Noe"
+    last_name 'Authorized'
+    email { generate :email }
+    password 'hogehoge'
+    password_confirmation 'hogehoge'    
+  end
 end
