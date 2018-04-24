@@ -14,7 +14,7 @@
 			<%= link_to "Add New Entries", new_post_path, id: "new_post_from_nav" %>
 		</li>
 		<li class="nav-item dropdown ml-md-auto pull-right">
-			<a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+			<a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= current_user.type %><strong class="caret"></strong></a>
 			<ul class="dropdown-menu">
 				<% if current_user.try(:type) == 'AdminUser' %>
 					<li>
