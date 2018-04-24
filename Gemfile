@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'gritter'
 gem "administrate"
 gem 'bourbon'
+gem 'pundit'
 
 group :development, :test do
   gem 'sqlite3'
