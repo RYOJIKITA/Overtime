@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 feature 'navigate' do
+  let(:user) { FactoryGirl.create(:user) }
+
+  let(:post) do
+    Post.create(date: Date.today, rationale: "Rationale", user_id: user.id)
+  end
+
   background do
-    @user = FactoryGirl.create(:user)
-    login_as(@user, :scope => :user)
+    login_as(user, :scope => :user)
   end
 
   feature 'index' do
@@ -27,9 +32,6 @@ feature 'navigate' do
     end
 
     scenario 'has a scope so that only post creator can see thier posts' do
-      post1 = Post.create(date: Date.today, rationale: "abcd", user_id: @user.id)
-      post2 = Post.create(date: Date.today, rationale: "abcd", user_id: @user.id)
-
       other_user = User.create(first_name: "Non", last_name: 'Authorized', 
                 email: "nonauth@gmail.com", password: 'hogehoge', password_confirmation: 'hogehoge' )   
       post_from_other_user = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id)
@@ -51,11 +53,16 @@ feature 'navigate' do
 
   feature 'delete' do
     scenario 'can be deleted' do
-      @post = FactoryGirl.create(:post)
-      @post.update(user_id: @user.id)
+      logout(:user)
+
+      delete_user = FactoryGirl.create(:user)
+      login_as(delete_user, :scope => :user)
+
+      post_to_delete = Post.create(date: Date.today, rationale: "ababa", user_id: delete_user.id)
+
       visit posts_path
 
-      click_link ("delete_post_#{@post.id}_from_index")
+      click_link ("delete_post_#{post_to_delete.id}_from_index")
       expect(page.status_code).to eq(200)      
     end
   end
@@ -84,14 +91,8 @@ feature 'navigate' do
   end
 
   describe 'edit' do
-    background do
-      @edit_user = User.create(first_name: "jack", last_name: "mike", email: "edit_user@gmail.com", password: "aaaaaa", password_confirmation: "aaaaaa")
-      login_as(@edit_user, :scope => :user)
-      @edit_post = Post.create(date: Date.today, rationale: "aaaaaaa", user_id: @edit_user.id)
-    end
-
     scenario 'can be edited' do
-      visit edit_post_path(@edit_post)
+      visit edit_post_path(post)
 
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited post"
@@ -105,7 +106,7 @@ feature 'navigate' do
       non_authorized_user = FactoryGirl.create(:non_authorized_user)
       login_as(non_authorized_user, :scope => :user)
 
-      visit edit_post_path(@edit_post)
+      visit edit_post_path(post)
 
       expect(current_path).to eq(root_path)
     end
