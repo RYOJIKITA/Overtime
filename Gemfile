@@ -20,6 +20,7 @@ gem 'gritter'
 gem "administrate"
 gem 'bourbon'
 gem 'pundit'
+gem 'twilio-ruby'
 
 group :development, :test do
   gem 'sqlite3'
