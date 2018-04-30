@@ -16,6 +16,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     type: Field::String,
+    phone: Field::String,
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
@@ -25,6 +26,7 @@ class AdminUserDashboard < Administrate::BaseDashboard
 
   SHOW_PAGE_ATTRIBUTES = [
     :posts,
+    :phone,
     :email,
     :sign_in_count,
     :current_sign_in_at,
@@ -44,5 +46,6 @@ class AdminUserDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :type,
+    :phone,
   ].freeze
 end
