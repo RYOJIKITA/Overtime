@@ -22,7 +22,7 @@ gem 'bourbon'
 gem 'pundit'
 gem 'twilio-ruby'
 gem 'dotenv-rails', :groups => [:development, :test]
-
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3'
