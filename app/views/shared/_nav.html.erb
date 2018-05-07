@@ -10,6 +10,10 @@
 		<li class="nav-item <%= active?(posts_path) %>">
 			<%= link_to "Time Entries", posts_path %>
 		</li>
+		
+		<!-- 		TODO: possibly refactor -->		
+		<%= render 'shared/audit_log_tab' if policy(AuditLog).index? %>
+
 		<li class="nav-item <%= active?(posts_path) %>">
 			<%= link_to "Add New Entries", new_post_path, id: "new_post_from_nav" %>
 		</li>
