@@ -7,9 +7,12 @@
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	.homepage-block {
-		margin-top: 15px;
+		margin: 12px 42px 12px 42px;
 		padding:15px;
 		background: #1d3c91;
 		color: #fff;
+		.pending-detail {
+			font-weight: 900;
+		}
 	}
 }
