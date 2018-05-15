@@ -5,7 +5,6 @@ module ApplicationHelper
 
 	def admin_types
 		['AdminUser']
-		
 	end
 
 	def status_label status
